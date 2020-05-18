@@ -92,7 +92,7 @@ root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
     ]
 }
 
-root@ramu-VirtualBox:~# aws eks --region us-west-2 update-kubeconfig --profile dev --name terraform-tl-eks-test
+```root@ramu-VirtualBox:~# aws eks --region us-west-2 update-kubeconfig --profile dev --name terraform-tl-eks-test
 Updated context arn:aws:eks:us-west-2:644808427317:cluster/terraform-tl-eks-test in /root/.kube/config
 
 root@ramu-VirtualBox:~# kubectl get po --all-namespaces
@@ -106,4 +106,4 @@ root@ramu-VirtualBox:~# kubectl get nodes
 NAME                                          STATUS   ROLES    AGE   VERSION
 ip-10-123-30-127.us-west-2.compute.internal   Ready    <none>   51m   v1.15.11-eks-af3caf
 root@ramu-VirtualBox:~# 
-
+```
