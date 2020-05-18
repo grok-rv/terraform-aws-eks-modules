@@ -107,4 +107,20 @@ root@ramu-VirtualBox:~# kubectl get nodes
 NAME                                          STATUS   ROLES    AGE   VERSION
 ip-10-123-30-127.us-west-2.compute.internal   Ready    <none>   51m   v1.15.11-eks-af3caf
 root@ramu-VirtualBox:~# 
+
+root@ramu-VirtualBox:~# kubectl get deploy --all-namespaces
+NAMESPACE     NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   coredns   2/2     2            2           68m
+
+root@ramu-VirtualBox:~# kubectl get ds --all-namespaces
+NAMESPACE     NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+kube-system   aws-node     1         1         1       1            1           <none>          68m
+kube-system   kube-proxy   1         1         1       1            1           <none>          68m
+
+root@ramu-VirtualBox:~# kubectl get svc --all-namespaces
+NAMESPACE     NAME         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)         AGE
+default       kubernetes   ClusterIP   172.20.0.1    <none>        443/TCP         68m
+kube-system   kube-dns     ClusterIP   172.20.0.10   <none>        53/UDP,53/TCP   68m
+root@ramu-VirtualBox:~# 
+
 ```
