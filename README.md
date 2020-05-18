@@ -42,7 +42,7 @@ terraform graph | dot -Tsvg > images/resource-graph.svg
 
 **Output**
 -----------------------------------------------------
-
+```
 Apply complete! Resources: 33 added, 0 changed, 0 destroyed.
 
 The state of your infrastructure has been saved to the path
@@ -81,10 +81,11 @@ tl-dev-terraform-vpc = vpc-05ad72d1d7c3608ab
 
 tl-dev-terraformbucket_name = arn:aws:s3:::tl-eks-dev-terraformstate
 
+```
 
 **Access EKS endpoint**
 ------------------------------------------------------
-
+```
 root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
 {
     "clusters": [
@@ -92,7 +93,7 @@ root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
     ]
 }
 
-```root@ramu-VirtualBox:~# aws eks --region us-west-2 update-kubeconfig --profile dev --name terraform-tl-eks-test
+root@ramu-VirtualBox:~# aws eks --region us-west-2 update-kubeconfig --profile dev --name terraform-tl-eks-test
 Updated context arn:aws:eks:us-west-2:644808427317:cluster/terraform-tl-eks-test in /root/.kube/config
 
 root@ramu-VirtualBox:~# kubectl get po --all-namespaces
