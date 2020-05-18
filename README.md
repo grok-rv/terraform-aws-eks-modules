@@ -82,3 +82,28 @@ tl-dev-terraform-vpc = vpc-05ad72d1d7c3608ab
 tl-dev-terraformbucket_name = arn:aws:s3:::tl-eks-dev-terraformstate
 
 
+**Access EKS endpoint**
+------------------------------------------------------
+
+root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
+{
+    "clusters": [
+        "terraform-tl-eks-test"
+    ]
+}
+
+root@ramu-VirtualBox:~# aws eks --region us-west-2 update-kubeconfig --profile dev --name terraform-tl-eks-test
+Updated context arn:aws:eks:us-west-2:644808427317:cluster/terraform-tl-eks-test in /root/.kube/config
+
+root@ramu-VirtualBox:~# kubectl get po --all-namespaces
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-dg8fm             1/1     Running   0          51m
+kube-system   coredns-86d5cbb4bd-5wz45   1/1     Running   0          56m
+kube-system   coredns-86d5cbb4bd-6q844   1/1     Running   0          56m
+kube-system   kube-proxy-phlk6           1/1     Running   0          51m
+
+root@ramu-VirtualBox:~# kubectl get nodes
+NAME                                          STATUS   ROLES    AGE   VERSION
+ip-10-123-30-127.us-west-2.compute.internal   Ready    <none>   51m   v1.15.11-eks-af3caf
+root@ramu-VirtualBox:~# 
+
