@@ -1,35 +1,61 @@
 # tl-eks-terraform
-Resources required for deployment of tl accounts on EKS using terraform IAC
+Resources required for deployment of AWS EKS using terraform IAC
 
-**Requirement**
+##Requirement
 --------------------------
-terraform v0.12, python-pydot, python-pydot-ng and graphviz for resource graph visualization
+terraform v0.12, aws-iam-authenticator, python-pydot, python-pydot-ng and graphviz for resource graph visualization
 
 AWS provider version auto installed from terrafrom init and set to versoon "~2.0"
 
+1. Installing terraform provider [manual] (https://learn.hashicorp.com/terraform/getting-started/install.html)
+   - To install terraform, find the right package for your system from [downloads] (https://www.terraform.io/downloads.html). Select the right package, right click and copy link    location
+   - download the package using wget or curl: wget `paste link location`
+   - unzip the package: unzip terraform.zip
+   - terraform runs as a single binary. any other files in the package can be safely removed and terraform will still function. Move the terraform binary to one of the locations    like /usr/bin or /usr/local/bin and include PATH.
+   - mv ~/terraform /usr/local/bin/teraform
+   - set PATH to reflect the binary. Refer to link in step 1 for installation and setup binary
+   - verify the installation: terraform -h
 
-**Usage**
+2. Installing aws-iam-authenticator for [Linux] (https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+
+3. Installing python-pydot,python-pydot-ng and graphviz for graph visualization:
+   - sudo apt install python-pydot python-pydot-ng graphviz
+
+
+##Usage
 -----------------------------------
 
-Use aws configure to load your api access keys to default  credentials file at "~/.aws/credentials"
+1. Use aws configure to load your api access keys to default  credentials file at "~/.aws/credentials" with profiles dev and prod. Loading through shared credentials file is not recommended, however a good approach is to get temporary STS credentials. 
 
-Create 2 profiles dev and prod and use the same for aws credentials as well.
+2. terraform variables will be defaulted to region=us-west-2 and profile=dev if not specified during the terraform plan
 
-terraform variables will be defaulted to region=us-west-2 and profile=dev if not specified during the terraform plan
+3. All the code related to eks, vpc, storage will be under modules and for each environments for dev and prod can be created under environments directory. Always run from the envirnments main directory for terraform plan, apply, destroy and pull modules for code reusability  
+
+4. Terraform flow:
+
+```
+1. Initialize the plugins for the provider and sync the terraform backend
+   - terraform init
+
+2. To validate the syntax for terraform config files
+   - terraform validate
+
+3. To output the terraform resource config out to an output plan file before applying changes.
+   - terraform plan -out=tfplan
+
+4. Apply changes to the terraform plan
+   - terraform apply tfplan
+
+5. View resources.
+   - terraform show
+
+6. Destroy changes to the resources or tear down the infrastructure.
+   - terraform destroy -auto-approve
+
+```
 
 
-terraform validate
-
-terraform init
-
-terraform plan -out=tfplan
-
-terraform apply tfplan
-
-terraform destroy -auto-approve
-
-
-**Resource graph**
+##Resource graph
 --------------------------------
 Resource graph of the terraform plan. Use graphviz to analyze it
 
@@ -40,7 +66,7 @@ terraform graph | dot -Tsvg > images/resource-graph.svg
 ![](images/resource-graph.svg)
 
 
-**Output**
+##Output
 -----------------------------------------------------
 ```
 Apply complete! Resources: 33 added, 0 changed, 0 destroyed.
@@ -83,7 +109,7 @@ tl-dev-terraformbucket_name = arn:aws:s3:::tl-eks-dev-terraformstate
 
 ```
 
-**Access EKS endpoint**
+##Access EKS endpoint
 ------------------------------------------------------
 ```
 root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
