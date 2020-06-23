@@ -1,7 +1,7 @@
-# tl-eks-terraform
+# eks-terraform
 Resources required for deployment of AWS EKS using terraform IAC
 
-##Requirement
+## Requirement
 --------------------------
 terraform v0.12, aws-iam-authenticator, python-pydot, python-pydot-ng and graphviz for resource graph visualization
 
@@ -22,7 +22,7 @@ AWS provider version auto installed from terrafrom init and set to versoon "~2.0
    - sudo apt install python-pydot python-pydot-ng graphviz
 
 
-##Usage
+## Usage
 -----------------------------------
 
 1. Use aws configure to load your api access keys to default  credentials file at "~/.aws/credentials" with profiles dev and prod. Loading through shared credentials file is not recommended, however a good approach is to get temporary STS credentials. 
@@ -55,7 +55,7 @@ AWS provider version auto installed from terrafrom init and set to versoon "~2.0
 ```
 
 
-##Resource graph
+## Resource graph
 --------------------------------
 Resource graph of the terraform plan. Use graphviz to analyze it
 
@@ -66,7 +66,7 @@ terraform graph | dot -Tsvg > images/resource-graph.svg
 ![](images/resource-graph.svg)
 
 
-##Output
+## Output
 -----------------------------------------------------
 ```
 Apply complete! Resources: 33 added, 0 changed, 0 destroyed.
@@ -109,7 +109,7 @@ tl-dev-terraformbucket_name = arn:aws:s3:::tl-eks-dev-terraformstate
 
 ```
 
-##Access EKS endpoint
+## Access EKS endpoint
 ------------------------------------------------------
 ```
 root@ramu-VirtualBox:~# aws eks list-clusters --region us-west-2 --profile dev
