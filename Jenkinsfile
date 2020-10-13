@@ -49,7 +49,7 @@ pipeline {
     stage('Git checkout') {
        steps {
          dir('tl-eks-terraform') {
-           git branch: 'master', credentialsId: '', url: 'https://github.nikecom/CIS/tl-eks-terraform.git'
+           git branch: 'master', credentialsId: '', url: 'https://github.com/tl-eks-terraform.git'
          }
        }
     }
