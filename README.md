@@ -1,5 +1,5 @@
 # eks-terraform
-Resources required for deployment of AWS EKS using terraform IAC
+Resources required for deployment of AWS EKS clusters using terraform Infrastructure as code
 
 ## Requirement
 --------------------------
@@ -57,7 +57,7 @@ AWS provider version auto installed from terrafrom init and set to versoon "~2.0
 
 ## Resource graph
 --------------------------------
-Resource graph of the terraform plan. Use graphviz to analyze it
+Resource graph of the terraform plan. Use graphviz to analyze plan
 
 sudo apt install -y python-pydot python-pydot-ng graphviz
 
