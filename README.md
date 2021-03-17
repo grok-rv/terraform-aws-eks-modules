@@ -1,5 +1,5 @@
 # eks-terraform
-Resources required for deployment of AWS EKS using terraform IAC
+Resources required for deployment of AWS EKS clusters using terraform Infrastructure as code
 
 ## Requirement
 --------------------------
